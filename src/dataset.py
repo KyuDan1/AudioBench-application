@@ -52,6 +52,11 @@ class Dataset(object):
 
         elif self.dataset_name == 'librispeech_test_other': 
             self.raw_data = load_dataset("AudioLLMs/librispeech_test_other")['test']
+        
+        
+        # Fleurs en 추가.
+        elif self.dataset_name == 'fleurs_test_en': 
+            self.raw_data = load_dataset("google/fleurs", "en_us", split="test")
 
         elif self.dataset_name == 'common_voice_15_en_test': 
             self.raw_data = load_dataset("AudioLLMs/common_voice_15_en_test")['test']
@@ -312,6 +317,11 @@ class Dataset(object):
         elif self.dataset_name == 'librispeech_test_other': 
             from dataset_src.librispeech_test_other import librispeech_test_other_dataset
             self.dataset_processor = librispeech_test_other_dataset(self.raw_data, self.number_of_samples)
+
+        elif self.dataset_name == 'fleurs_test_en': 
+            from dataset_src.fleurs_en_test import fleurs_en_test_dataset
+            self.dataset_processor = fleurs_en_test_dataset(self.raw_data, self.number_of_samples)
+
 
         elif self.dataset_name == 'common_voice_15_en_test':
             from dataset_src.common_voice_15_en_test import common_voice_15_en_test_dataset
