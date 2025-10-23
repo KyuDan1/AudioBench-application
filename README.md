@@ -26,6 +26,9 @@
 
 
 ## 📝 Change log
+* *Oct 2025*: Supported gemini-2.5-flash, gemini-2.5-pro model by Kyudan Jung,
+
+
 * *Mar 2025*: Supported [phi_4_multimodal_instruct](https://huggingface.co/microsoft/Phi-4-multimodal-instruct) model, [gigaspeech 2](https://arxiv.org/abs/2406.11546) evaluation (Thai, Vietenames and Indonesina).
 * *Mar 2025*: Support [MMAU](https://sakshi113.github.io/mmau_homepage/) testset. Multiple-choice questions for speech, audio and music understanding!
 * *Mar 2025*: AudioBench now supports over 50 datasets!!
