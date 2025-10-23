@@ -19,7 +19,16 @@ from transformers.generation import GenerationConfig
 
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
 
+
+#버그 수정 등 모든 지원은 2025년 11월 30일에 종료됩니다.
 import google.generativeai as genai
+# API key는 cli에서 다음 명령 치기.
+# export GOOGLE_API_KEY=xxxxxxxxxxxxxxxxxxxxxx
+
+# 아래처럼 바꿔야됨
+#from google import genai
+# 이에 따라 아래 코드도 수정이 필요함.
+# pip install google-genai
 
 import tempfile
 
@@ -37,7 +46,7 @@ logging.basicConfig(
 def gemini_1_5_flash_model_loader(self):
 
     # Initialize a Gemini model appropriate for your use case.
-    self.model = genai.GenerativeModel('models/gemini-2.5-flash')
+    self.model = genai.GenerativeModel('models/gemini-1.5-flash')
     logger.info("Model loaded")
 
 

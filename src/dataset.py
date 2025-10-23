@@ -25,7 +25,10 @@ class Dataset(object):
         self.number_of_samples = number_of_samples
 
         # Load dataset
+        # 이 두가지 과정을 거치게 됨.
+        # load를 먼저 하고,
         self.load_dataset()
+        # 개수에 맞게 prompt를 작성함.
         self.data_format()
 
     def load_dataset(self):
@@ -274,7 +277,7 @@ class Dataset(object):
         logger.info("Loaded {} samples for evaluation".format(len(self.raw_data)))
         logger.info("= = "*20)
 
-
+    # 각 데이터셋 마다 py 파일이 있고 거기 안에 데이터셋 로딩 할 수 있음.
     def data_format(self):
 
         # if samples less than requested samples

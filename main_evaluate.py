@@ -67,7 +67,7 @@ def main(
         batch_size = -1
         logger.info("Batch size is set to -1 for WavLLM_fairseq model.")
 
-
+    # 이 인스턴스 생성하면서 dataset.input_data도 함께 생성됨. 즉 input data 형태를
     dataset = Dataset(dataset_name, number_of_samples)
 
     if overwrite or not os.path.exists('log/{}/{}.json'.format(model_name, dataset_name)):
