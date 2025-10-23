@@ -24,6 +24,20 @@
 🏠 [AudioBench Leaderboard](https://huggingface.co/spaces/AudioLLMs/AudioBench-Leaderboard-Extend) | 🤗 [Huggingface Datasets](https://huggingface.co/AudioLLMs) | 🤗 [AudioLLM Paper Collection](https://github.com/AudioLLMs/Awesome-Audio-LLM) ![GitHub Repo stars](https://img.shields.io/github/stars/AudioLLMs/Awesome-Audio-LLM?style=social)
 
 
+## How to add dataset and model?
+
+#### Model을 추가하고 싶다
+1. model_src directory 에 gemini_2_5_flash.py 만들기
+2. model.py 에 def generate 안에 generation 코드 추가
+3. model.py 에 def load_model 안에 loader 코드 추가
+
+#### Dataset을 추가하고 싶다
+1. dataset_src directory 에 mmau.py 만들기
+2. dataset.py 에 def load_dataset 안에 load_from_disk (로컬 데이터) 또는 load_dataset (huggingface 리포) 추가하기.
+3. dataset.py 에 def data_format 안에 dataset_processor 추가하기.
+
+* metric 은 model이 아닌 Dataset class 에 종속됨. 잘 생각해보면 그러함.
+
 
 ## 📝 Change log
 * *Oct 2025*: Supported gemini-2.5-flash, gemini-2.5-pro model by Kyudan Jung,

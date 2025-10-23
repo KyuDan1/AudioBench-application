@@ -203,6 +203,10 @@ class Dataset(object):
         elif self.dataset_name == 'mmau_mini':
             self.raw_data = load_dataset("AudioLLMs/MMAU-mini")['test']
 
+        elif self.dataset_name == 'mmau':
+            # We need to upload mmau at huggingface
+            self.raw_data = load_dataset("Kyudan/MMAU")['test']
+
         elif self.dataset_name == 'gigaspeech2_thai':
             self.raw_data = load_dataset("AudioLLMs/gigaspeech2-test", data_dir='th-test')['train']
 
@@ -500,6 +504,10 @@ class Dataset(object):
         elif self.dataset_name == 'mmau_mini':
             from dataset_src.mmau_mini import mmau_mini_test_dataset
             self.dataset_processor = mmau_mini_test_dataset(self.raw_data, self.number_of_samples)
+
+        elif self.dataset_name == 'mmau':
+            from dataset_src.mmau import mmau_test_dataset
+            self.dataset_processor = mmau_test_dataset(self.raw_data, self.number_of_samples)
 
         elif self.dataset_name == 'gigaspeech2_thai':
             from dataset_src.gigaspeech2_thai import gigaspeech2_thai_test_dataset
