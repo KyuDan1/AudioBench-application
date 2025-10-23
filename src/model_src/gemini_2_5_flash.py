@@ -21,12 +21,14 @@ from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
 
 
 #버그 수정 등 모든 지원은 2025년 11월 30일에 종료됩니다.
-import google.generativeai as genai
+#import google.generativeai as genai
 # API key는 cli에서 다음 명령 치기.
 # export GOOGLE_API_KEY=xxxxxxxxxxxxxxxxxxxxxx
 
 # 아래처럼 바꿔야됨
-#from google import genai
+from google import genai
+from google.genai import types
+
 # 이에 따라 아래 코드도 수정이 필요함.
 # pip install google-genai
 
@@ -43,30 +45,38 @@ logging.basicConfig(
 # =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =
 
 
-def gemini_1_5_flash_model_loader(self):
+def gemini_2_5_flash_model_loader(self):
+    api_key = os.getenv("GOOGLE_API_KEY")
 
-    # Initialize a Gemini model appropriate for your use case.
-    self.model = genai.GenerativeModel('models/gemini-1.5-flash')
+    if not api_key:
+        logger.error("GOOGLE_API_KEY 환경 변수가 설정되지 않았습니다.")
+        return 
+
+        # 환경 변수에서 읽어온 api_key 값으로 Client 초기화
+    self.model = genai.Client(api_key=api_key)
     logger.info("Model loaded")
 
 
 def do_sample_inference(self, audio_array, instruction, sampling_rate=16000):
-
     audio_path = tempfile.NamedTemporaryFile(suffix=".wav", prefix="audio_", delete=False)
     sf.write(audio_path.name, audio_array, sampling_rate)
-
-    response = self.model.generate_content([
-        instruction,
-        {
-            "mime_type": "audio/wav",
-            "data": pathlib.Path(audio_path.name).read_bytes()
-        }
-    ])
+    with open(audio_path.name, 'rb') as f:
+        audio_bytes = f.read()
+    response = self.model.models.generate_content(
+                model="gemini-2.5-flash", 
+                contents=[
+                    instruction, 
+                    types.Part.from_bytes(
+                        data=audio_bytes,
+                        mime_type='audio/mp3',
+            )
+            ]
+            )
     response = response.text
     return response
 
 
-def gemini_1_5_flash_model_generation(self, input):
+def gemini_2_5_flash_model_generation(self, input):
 
     audio_array    = input["audio"]["array"]
     sampling_rate  = input["audio"]["sampling_rate"]
