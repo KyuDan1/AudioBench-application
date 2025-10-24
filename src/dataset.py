@@ -134,6 +134,20 @@ class Dataset(object):
 
         elif self.dataset_name == 'covost2_zh_en_test': 
             self.raw_data = load_dataset("AudioLLMs/covost2_zh_en_test")['test']
+        
+        elif self.dataset_name == 'fleurs_en_ko_test':
+            fleurs_en = load_dataset("google/fleurs", "en_us", split="test", trust_remote_code=True)
+            fleurs_ko = load_dataset("google/fleurs", "ko_kr", split="test", trust_remote_code=True)
+            self.raw_data = fleurs_en.sort('id') # For logging.
+            self.raw_data_en = fleurs_en.sort('id')
+            self.raw_data_ko = fleurs_ko.sort('id')
+
+        elif self.dataset_name == 'fleurs_ko_en_test':
+            fleurs_en = load_dataset("google/fleurs", "en_us", split="test", trust_remote_code=True)
+            fleurs_ko = load_dataset("google/fleurs", "ko_kr", split="test", trust_remote_code=True)
+            self.raw_data = fleurs_en.sort('id') # For logging.
+            self.raw_data_en = fleurs_en.sort('id')
+            self.raw_data_ko = fleurs_ko.sort('id')
 
         elif self.dataset_name == 'covost2_ta_en_test': 
             self.raw_data = load_dataset("AudioLLMs/covost2_ta_en_test")['test']
@@ -428,6 +442,15 @@ class Dataset(object):
         elif self.dataset_name == 'covost2_zh_en_test': 
             from dataset_src.covost2_zh_en_test import covost2_zh_en_test_dataset
             self.dataset_processor = covost2_zh_en_test_dataset(self.raw_data, self.number_of_samples)
+
+        elif self.dataset_name == 'fleurs_en_ko_test':
+            from dataset_src.fleurs_en_ko_test import fleurs_en_ko_test_dataset
+            self.dataset_processor = fleurs_en_ko_test_dataset(self.raw_data, self.raw_data_en, self.raw_data_ko, self.number_of_samples)
+
+        elif self.dataset_name == 'fleurs_ko_en_test':
+            from dataset_src.fleurs_ko_en_test import fleurs_ko_en_test_dataset
+            self.dataset_processor = fleurs_ko_en_test_dataset(self.raw_data, self.raw_data_en, self.raw_data_ko, self.number_of_samples)
+
 
         elif self.dataset_name == 'covost2_ta_en_test': 
             from dataset_src.covost2_ta_en_test import covost2_ta_en_test_dataset

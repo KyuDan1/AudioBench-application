@@ -26,17 +26,19 @@
 
 ## How to add dataset and model?
 
-#### Model을 추가하고 싶다
-1. model_src directory 에 gemini_2_5_flash.py 만들기
-2. model.py 에 def generate 안에 generation 코드 추가
-3. model.py 에 def load_model 안에 loader 코드 추가
+#### Adding Model
+(e.g. gemini 2.5 flash)
+1. Make gemini_2_5_flash.py in model_src directory.
+2. Make generation code in model.py at def generate.
+3. Add loader code in model.py at def load_model.
 
-#### Dataset을 추가하고 싶다
-1. dataset_src directory 에 mmau.py 만들기
-2. dataset.py 에 def load_dataset 안에 load_from_disk (로컬 데이터) 또는 load_dataset (huggingface 리포) 추가하기.
-3. dataset.py 에 def data_format 안에 dataset_processor 추가하기.
+#### Adding dataset
+(e.g. MMAU)
+1. Make mmau.py at dataset_src directory
+2. Add load_from_disk (local data) or load_dataset (huggingface repo) in dataset.py at def load_dataset.
+3. Add dataset_processor in dataset.py at def data_format.
 
-* metric 은 model이 아닌 Dataset class 에 종속됨. 잘 생각해보면 그러함.
+* Make sure that metric is depends on Dataset class, not the Model one.
 
 ### Requirements
 - jiwer==2.3.0
@@ -70,6 +72,10 @@
 - [x] [peoples_speech_test](./examples/supported_datasets.md), ASR, English, Metric: `wer`
 - [x] [gigaspeech_test](./examples/supported_datasets.md), ASR, English, Metric: `wer`
 - [x] [tedlium3_test](./examples/supported_datasets.md), ASR, English, Metric: `wer`
+- [x] [fleurs_en_test](./examples/supported_datasets.md), ASR, English, Metric: `wer`
+- [x] [fleurs_ko_test](./examples/supported_datasets.md), ASR, Korean, Metric: `wer`
+
+
 - [x] [tedlium3_long_form_test](./examples/supported_datasets.md), ASR, English, Long recording, Metric: `wer`
 - [x] [earnings21_test](./examples/supported_datasets.md), ASR, English, Long recording, Metric: `wer`
 - [x] [earnings22_test](./examples/supported_datasets.md), ASR, English, Long recording, Metric: `wer`
@@ -80,6 +86,10 @@
 - [x] [covost2_id_en_test](./examples/supported_datasets.md), Speech Translation, Indonesian-English, Metric: `bleu`
 - [x] [covost2_zh_en_test](./examples/supported_datasets.md), Speech Translation, Chinese-English, Metric: `bleu`
 - [x] [covost2_ta_en_test](./examples/supported_datasets.md), Speech Translation, Tamil-English, Metric: `bleu`
+- [x] [fleurs_ko_en_test](./examples/supported_datasets.md), Speech Translation, Korean-English, Metric: `bleu`
+- [x] [fleurs_en_ko_test](./examples/supported_datasets.md), Speech Translation, English-Korean, Metric: `bleu`
+
+
 - [x] [cn_college_listen_mcq_test](./examples/supported_datasets.md), Speech Question Answering, Multiple Choice, Metric: `llama3_70b_judge`, `gpt4o_judge`
 - [x] [slue_p2_sqa5_test](./examples/supported_datasets.md), Speech Question Answering, Metric: `llama3_70b_judge`, `gpt4o_judge`
 - [x] [dream_tts_mcq_test](./examples/supported_datasets.md), Speech Question Answering, Multiple Choice, Metric: `llama3_70b_judge`, `gpt4o_judge`
@@ -123,7 +133,10 @@
 - [x] [imda_gr_dialogue](./examples/supported_datasets.md), Singlish, Gender Recognition, Metric: `llama3_70b_judge`, `gpt4o_judge`
 - [x] [seame_dev_man](./examples/supported_datasets.md), English-Chinese Code-Switching, Metric: `wer`
 - [x] [seame_dev_sge](./examples/supported_datasets.md), English-Chinese Code-Switching, Metric: `wer`
-- [x] [mmau_mini](./examples/supported_datasets.md), Audio Understandign and Reasoning, Multiple Choice Questions, Metric: `llama3_70b_judge`, `string_match`, `gpt4o_judge`
+- [x] [mmau_mini](./examples/supported_datasets.md), Audio Understanding and Reasoning, Multiple Choice Questions, Metric: `llama3_70b_judge`, `string_match`, `gpt4o_judge`
+- [x] [mmau](./examples/supported_datasets.md), Audio Understanding and Reasoning, Multiple Choice Questions, Metric: `llama3_70b_judge`, `string_match`, `gpt4o_judge`
+
+
 - [x] [gigaspeech2_thai](./examples/supported_datasets.md), ASR for Thai language, Metric: `wer`
 - [x] [gigaspeech2_indo](./examples/supported_datasets.md), ASR for Indonesian language, Metric: `wer`
 - [x] [gigaspeech2_viet](./examples/supported_datasets.md), ASR for Vietnamese language, Metric: `wer`
