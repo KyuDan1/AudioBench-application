@@ -38,6 +38,10 @@
 
 * metric 은 model이 아닌 Dataset class 에 종속됨. 잘 생각해보면 그러함.
 
+### Requirements
+- jiwer==2.3.0
+- datasets<3.0.0
+
 
 ## 📝 Change log
 * *Oct 2025*: Supported gemini-2.5-flash, gemini-2.5-pro model by Kyudan Jung,

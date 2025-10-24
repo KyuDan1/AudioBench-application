@@ -1,0 +1,15 @@
+{
+    "wer": 0.1276595744680851,
+    "sample_wer": [
+        {
+            "reference": "its renown for being an epicenter of luxury began in about 400 a d and lasted up until about 1100 a d",
+            "prediction": "is renowned for being an epicenter of luxury began in about 400 ad and lasted up until about 1100 ad",
+            "wer": 0.2727272727272727
+        },
+        {
+            "reference": "in fact it is not easy to find at all even if one knew it existed once inside the cave it is a total isolation",
+            "prediction": "in fact it is not easy to find at all even if one knew it existed once inside the cave it is a total isolation",
+            "wer": 0.0
+        }
+    ]
+}

@@ -7,7 +7,7 @@ from dataset_src.text_normalizer.preprocess_text import preprocess_text_asr
 from dataset_src.prompts.prompts import asr_instructions
 
 
-class fleurs_en_test_dataset(object):
+class fleurs_ko_test_dataset(object):
 
     def __init__(self, raw_data, number_of_samples):
 
